@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   	end
   end
   	namespace 'v1' do
-  		resources :sessions, only: [:create, :destroy]
+  		resources :sessions, only: [:index, :create, :destroy]
+      resources :users, only: [:create]
   	end
+    namespace 'v1' do
+      resources :users, only: [:create]
+    end
 end

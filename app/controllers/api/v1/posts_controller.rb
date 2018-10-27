@@ -1,6 +1,7 @@
 module Api
 	module V1
 		class PostsController < ApplicationController
+			# before_action :authenticate_user!
 
 			def index
 				render json: Post.all
@@ -12,11 +13,12 @@ module Api
 
 			# create new post
 			def create
-				post = Post.new(post_params)
-				if post.save
-					render json: {data:post},status: :ok
+				@post = Post.new(post_params)
+				
+				if @post.save
+					render json: {data:@post},status: :ok
 				else
-					render json: {status: "ERROR", message: "Not Saved", data:post.errors},status: :unprocessable_entity
+					render json: {status: "ERROR", message: "Not Saved", data:@post.errors},status: :unprocessable_entity
 				end
 			end
 
