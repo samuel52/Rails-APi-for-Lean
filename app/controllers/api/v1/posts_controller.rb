@@ -4,7 +4,8 @@ module Api
 			# before_action :authenticate_user!
 
 			def index
-				render json: Post.all
+				@posts = current_user.posts
+				render json: @post
 			end
 
 			def show
